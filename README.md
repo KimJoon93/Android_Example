@@ -9,3 +9,11 @@
       - ProgressBar
    
    - ViewGroup
+
+2. Fragment Communication
+
+3. Bluetooth
+
+4. Graph
+
+5. DataBase
