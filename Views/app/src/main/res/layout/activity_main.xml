@@ -7,10 +7,48 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ListView
-        android:id="@+id/mainLV"
+    <ScrollView
+        android:descendantFocusability="blocksDescendants"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </ListView>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="18sp"
+                android:layout_margin="12dp"
+                android:fontFamily="@font/bm_hanna"
+                android:text="@string/ViewDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ListView
+                android:layout_weight="1"
+                android:id="@+id/mainLV"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+            </ListView>
+
+            <TextView
+                android:textSize="18sp"
+                android:layout_margin="12dp"
+                android:fontFamily="@font/bm_hanna"
+                android:text="@string/ViewGroupDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ListView
+                android:layout_weight="1"
+                android:id="@+id/viewGroupLV"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+            </ListView>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

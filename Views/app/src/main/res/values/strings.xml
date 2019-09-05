@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Android Example</string>
+
+
+    <string name="textView">This is TextView\nUse SP rather than dp</string>
+    <string name="EditText">This is EditText</string>
+    <string name="button">Button</string>
+    <string name="ViewGroupDetail">ViewGroup 을 상속 받는 View\n자식 View를 포함할 수 있는 View</string>
+    <string name="ViewDetail">View를 상속 받는 아이들</string>
 </resources>
