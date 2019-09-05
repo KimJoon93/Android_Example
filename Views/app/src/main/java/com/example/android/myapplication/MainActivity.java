@@ -6,14 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    ScrollView scrollView;
     ListView viewLV;
     ListView viewGroupLV;
     ArrayList<String> viewList;
@@ -29,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
         viewList.add("TextView");
         viewList.add("ImageView");
         viewList.add("Progressbar");
+        viewList.add("Progressbar");
+        viewList.add("Progressbar");
+        viewList.add("Progressbar");
 
         viewGroupList = new ArrayList<>();
         viewGroupList.add("LinearLayout");
@@ -37,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         viewGroupList.add("AbsoluteLayout");
         viewGroupList.add("AdapterView");
 
+        scrollView = (ScrollView) findViewById(R.id.scrollView);
         viewLV = (ListView) findViewById(R.id.mainLV);
         viewGroupLV = (ListView) findViewById(R.id.viewGroupLV);
 
@@ -44,7 +52,10 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter viewGroupAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,viewGroupList);
 
         viewLV.setAdapter(arrayAdapter);
+        setListViewHeightBasedOnChildren(viewLV,viewList);
+
         viewGroupLV.setAdapter(viewGroupAdapter);
+        setListViewHeightBasedOnChildren(viewGroupLV,viewGroupList);
 
         viewLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -61,5 +72,24 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView, ArrayList<String> arrayList){
+        ListAdapter listAdapter = listView.getAdapter();
+        if(listAdapter == null){
+            return;
+        }
+
+        int totalHeight = 0;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST);
+
+        View listItem = listAdapter.getView(0, null, listView);
+        listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+        totalHeight += listItem.getMeasuredHeight();
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight;
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 }
