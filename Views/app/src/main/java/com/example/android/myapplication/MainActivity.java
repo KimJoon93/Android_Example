@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> viewList;
     ArrayList<String> viewGroupList;
 
+    Intent intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +34,6 @@ public class MainActivity extends AppCompatActivity {
         viewList = new ArrayList<>();
         viewList.add("TextView");
         viewList.add("ImageView");
-        viewList.add("Progressbar");
-        viewList.add("Progressbar");
-        viewList.add("Progressbar");
         viewList.add("Progressbar");
 
         viewGroupList = new ArrayList<>();
@@ -62,14 +61,13 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 if(i==0){
-                    Intent intent = new Intent(getApplicationContext(), TextView.class);
-                    startActivity(intent);
+                    intent = new Intent(getApplicationContext(), TextView.class);
                 }else if(i==1){
-                    Log.d("KJ","1111");
+                    intent = new Intent(getApplicationContext(), ImageView.class);
                 }else if(i==2){
                     Log.d("KJ","2222");
                 }
-
+                startActivity(intent);
             }
         });
     }
