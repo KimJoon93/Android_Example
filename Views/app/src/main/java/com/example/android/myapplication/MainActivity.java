@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 }else if(i==1){
                     intent = new Intent(getApplicationContext(), ImageView.class);
                 }else if(i==2){
-                    Log.d("KJ","2222");
+                    intent = new Intent(getApplicationContext(), View_ProgressBar.class);
                 }
                 startActivity(intent);
             }

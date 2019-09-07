@@ -1,19 +1,8 @@
 package com.example.android.myapplication;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.View;
-
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
-
-import java.net.URI;
 
 
 public class ImageView extends AppCompatActivity {
@@ -32,7 +21,7 @@ public class ImageView extends AppCompatActivity {
         imageView.setImageResource(R.drawable.highimage);
 
         Glide.with(this)
-                .load(url)
+                .load(R.drawable.highimage)
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(glideImage);
 
