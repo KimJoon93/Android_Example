@@ -21,7 +21,7 @@ public class ImageView extends AppCompatActivity {
         imageView.setImageResource(R.drawable.highimage);
 
         Glide.with(this)
-                .load(R.drawable.highimage)
+                .load("https://t1.daumcdn.net/cfile/tistory/25257E4753D84EE013")
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(glideImage);
 
