@@ -5,17 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String emailText;
-
     EditText mEmailEditText;
     CheckBox mSaveCheckbox;
 
-    private SharedPreferences mPreference;
+    SharedPreferences mPreference;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         mEmailEditText = findViewById(R.id.edit_email);
         mSaveCheckbox = findViewById(R.id.save_checkbox);
 
-        mPreference = PreferenceManager.getDefaultSharedPreferences(this);
+        mPreference = getSharedPreferences("Example",MODE_PRIVATE);
 
         Boolean isEmailSaveChecked = mPreference.getBoolean("Save",false);
         mSaveCheckbox.setChecked(isEmailSaveChecked);
@@ -38,13 +38,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        editor = mPreference.edit();
+        editor.clear();
+        editor.putBoolean("Save",mSaveCheckbox.isChecked());
+        editor.putString("Email",mEmailEditText.getText().toString());
+        editor.apply();
+
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        SharedPreferences.Editor editor = mPreference.edit();
-
-        editor.putBoolean("save",mSaveCheckbox.isChecked());
-        editor.apply();
 
     }
 }
