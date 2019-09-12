@@ -40,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
         editor = mPreference.edit();
         editor.clear();
         editor.putBoolean("Save",mSaveCheckbox.isChecked());
@@ -51,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        /*
+        *
+        * Do not put editors in here. Doesn't work!
+        *
+        */
 
     }
 }
