@@ -3,6 +3,7 @@ package com.example.android.retrofit;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,32 +25,35 @@ public class MainActivity extends AppCompatActivity {
 
         Button receiveBtn = findViewById(R.id.btn2);
 
-        final DTO dto = new DTO("Joon","27","Java");
+
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Log.d("TEST","Clicked!");
+
+                DTO dtos = new DTO("Joon","27","Java");
 
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl("ip + port")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
-                Interface testInterface = retrofit.create(Interface.class);
-                Call<String> repos = testInterface.listRepos(dto);
+                TestInterface testInterface = retrofit.create(TestInterface.class);
+                Call<String> repos = testInterface.listRepos(dtos);
+
                 repos.enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
-
+                        Log.d("TEST","dsfsdfds");
                     }
 
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
-
+                        Log.d("TEST",t.getMessage());
                     }
                 });
-
-
 
             }
         });
